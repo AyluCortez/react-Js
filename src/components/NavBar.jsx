@@ -2,17 +2,16 @@ import CartWidget from './CartWidget';
 
 const NavBar = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
       <div className="container">
-        <a className="navbar-brand" href="#">Mi Tienda</a>
-        <div className="collapse navbar-collapse">
-          <ul className="navbar-nav me-auto">
-            <li className="nav-item"><a className="nav-link" href="#">Electrónica</a></li>
-            <li className="nav-item"><a className="nav-link" href="#">Ropa</a></li>
-            <li className="nav-item"><a className="nav-link" href="#">Hogar</a></li>
+        <a className="navbar-brand fw-bold" href="#">CODER-STORE</a>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav mx-auto"> {/* mx-auto centra los links */}
+            <li className="nav-item"><a className="nav-link" href="#">Productos</a></li>
+            <li className="nav-item"><a className="nav-link" href="#">Ofertas</a></li>
+            <li className="nav-item"><a className="nav-link" href="#">Contacto</a></li>
           </ul>
         </div>
-        {/* Aquí renderizamos el widget del carrito */}
         <CartWidget />
       </div>
     </nav>
