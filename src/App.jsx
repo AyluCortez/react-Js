@@ -1,7 +1,6 @@
 import NavBar from './components/NavBar';
 import ItemListContainer from './components/ItemListContainer';
-import './App.css'; // Si tienes estilos personalizados
-
+import './App.css'; 
 function App() {
   return (
     <div className="App">

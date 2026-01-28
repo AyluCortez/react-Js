@@ -1,10 +1,13 @@
-const ItemListContainer = ({ greeting }) => {
+const ItemListContainer = (props) => {
   return (
     <div className="container mt-5">
-      <div className="alert alert-info text-center">
-        <h2>{greeting}</h2>
+      <div className="row">
+        <div className="col text-center">
+          {/* se muestra el mensaje que viene desde App.jsx */}
+          <h1 className="display-4">{props.greeting}</h1>
+          <p className="lead">Nuestros productos estarán disponibles pronto.</p>
+        </div>
       </div>
-      <p className="text-center">Próximamente verás nuestro catálogo aquí.</p>
     </div>
   );
 };
