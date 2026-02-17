@@ -1,16 +1,27 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import ItemListContainer from './components/ItemListContainer';
-import './App.css'; 
+import ItemDetailContainer from './components/ItemDetailContainer';
+import Error from './components/Error';
+
 function App() {
   return (
-    <div className="App">
-      {/* 1. La barra de navegación */}
+    /* BrowserRouter envuelve toda la app para habilitar la navegación */
+    <BrowserRouter>
       <NavBar />
-      
-      {/* 2. El contenedor con el saludo personalizado mediante Props */}
-      <ItemListContainer greeting="¡Bienvenido a nuestra tienda online!" />
-    </div>
+      <Routes>
+        {/* Ruta principal: Muestra todos los productos */}
+        <Route path="/" element={<ItemListContainer greeting="Bienvenido a Coder Store" />} />
+        
+        {/* Ruta con parámetro dinámico (:id): Filtra por categoría */}
+        <Route path="/category/:id" element={<ItemListContainer />} />
+        
+        {/* Ruta de detalle: Muestra un solo producto según su ID */}
+        <Route path="/item/:id" element={<ItemDetailContainer />} />
+        
+        <Route path="*" element={<Error />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
-
 export default App;

@@ -1,21 +1,21 @@
+import { Link, NavLink } from 'react-router-dom';
 import CartWidget from './CartWidget';
 
 const NavBar = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container">
-        <a className="navbar-brand fw-bold" href="#">CODER-STORE</a>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav mx-auto"> {/* mx-auto centra los links */}
-            <li className="nav-item"><a className="nav-link" href="#">Productos</a></li>
-            <li className="nav-item"><a className="nav-link" href="#">Ofertas</a></li>
-            <li className="nav-item"><a className="nav-link" href="#">Contacto</a></li>
-          </ul>
+        {/* Link a "/" para volver siempre al inicio */}
+        <Link className="navbar-brand fw-bold" to="/">CODER-STORE</Link>
+        
+        <div className="navbar-nav mx-auto">
+          {/* NavLink detecta si la ruta coincide y puede aplicar estilos de "activo" */}
+          <NavLink className="nav-link" to="/category/celulares">Celulares</NavLink>
+          <NavLink className="nav-link" to="/category/notebooks">Notebooks</NavLink>
         </div>
         <CartWidget />
       </div>
     </nav>
   );
 };
-
 export default NavBar;
