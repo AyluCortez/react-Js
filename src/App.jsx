@@ -11,7 +11,7 @@ function App() {
       <NavBar />
       <Routes>
         {/* Ruta principal: Muestra todos los productos */}
-        <Route path="/" element={<ItemListContainer greeting="Bienvenido a Coder Store" />} />
+        <Route path="/" element={<ItemListContainer greeting="Bienvenido a Black Store" />} />
         
         {/* Ruta con parámetro dinámico (:id): Filtra por categoría */}
         <Route path="/category/:id" element={<ItemListContainer />} />

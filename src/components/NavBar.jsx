@@ -6,7 +6,7 @@ const NavBar = () => {
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container">
         {/* Link a "/" para volver siempre al inicio */}
-        <Link className="navbar-brand fw-bold" to="/">CODER-STORE</Link>
+        <Link className="navbar-brand fw-bold" to="/">BLACK-STORE</Link>
         
         <div className="navbar-nav mx-auto">
           {/* NavLink detecta si la ruta coincide y puede aplicar estilos de "activo" */}
