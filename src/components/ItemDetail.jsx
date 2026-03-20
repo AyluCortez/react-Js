@@ -1,9 +1,22 @@
-import ItemCount from "./ItemCount";
+import { useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
+import ItemCount from './ItemCount';
+// Importamos el contexto para poder guardar el producto
+import { CartContext } from '../context/CartContext';
 
 const ItemDetail = ({ id, name, img, price, description, stock }) => {
-    // Esta función maneja la lógica de agregar al carrito (para la entrega 3)
-    const onAdd = (quantity) => {
-        console.log(`Agregado al carrito: ${quantity} unidades de ${name}`);
+    // Estado local para saber si el usuario ya hizo clic en agregar
+    const [quantityAdded, setQuantityAdded] = useState(0);
+
+    // Nos traemos la función addItem de nuestro Contexto Global
+    const { addItem } = useContext(CartContext);
+
+    const handleOnAdd = (quantity) => {
+        setQuantityAdded(quantity); // Guardamos la cantidad elegida
+
+        // Armamos el producto y lo mandamos al carrito global
+        const item = { id, name, price, img };
+        addItem(item, quantity);
     };
 
     return (
@@ -18,8 +31,14 @@ const ItemDetail = ({ id, name, img, price, description, stock }) => {
                     <p className="py-3">{description}</p>
                     <h3 className="text-primary mb-4">${price}</h3>
                     
-                    {/* Requisito: ItemCount dentro de ItemDetail */}
-                    <ItemCount stock={stock} initial={1} onAdd={onAdd} />
+                    {/* RENDERIZADO CONDICIONAL: Ocultar ItemCount si ya se agregó */}
+                    {
+                        quantityAdded > 0 ? (
+                            <Link to='/cart' className='btn btn-success w-100'>Terminar compra</Link>
+                        ) : (
+                            <ItemCount stock={stock} initial={1} onAdd={handleOnAdd} />
+                        )
+                    }
                 </div>
             </div>
         </div>

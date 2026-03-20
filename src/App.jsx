@@ -3,25 +3,27 @@ import NavBar from './components/NavBar';
 import ItemListContainer from './components/ItemListContainer';
 import ItemDetailContainer from './components/ItemDetailContainer';
 import Error from './components/Error';
+import Cart from './components/Cart';
+
+// 1. Acá importamos el contexto
+import { CartProvider } from './context/CartContext'; 
 
 function App() {
   return (
-    /* BrowserRouter envuelve toda la app para habilitar la navegación */
     <BrowserRouter>
-      <NavBar />
-      <Routes>
-        {/* Ruta principal: Muestra todos los productos */}
-        <Route path="/" element={<ItemListContainer greeting="Bienvenido a Black Store" />} />
-        
-        {/* Ruta con parámetro dinámico (:id): Filtra por categoría */}
-        <Route path="/category/:id" element={<ItemListContainer />} />
-        
-        {/* Ruta de detalle: Muestra un solo producto según su ID */}
-        <Route path="/item/:id" element={<ItemDetailContainer />} />
-        
-        <Route path="*" element={<Error />} />
-      </Routes>
+      {/* 2. Envolvemos toda la aplicación (NavBar y Routes) con el CartProvider */}
+      <CartProvider>
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<ItemListContainer greeting="Bienvenido a Coder Store" />} />
+          <Route path="/category/:id" element={<ItemListContainer />} />
+          <Route path="/item/:id" element={<ItemDetailContainer />} />
+          <Route path="*" element={<Error />} />
+          <Route path="/cart" element={<Cart />} />
+        </Routes>
+      </CartProvider>
     </BrowserRouter>
   );
 }
+
 export default App;
