@@ -19,9 +19,3 @@ Este proyecto es una aplicación de comercio electrónico (Single Page Applicati
 * **Control de Versiones:** Git y GitHub
 
 ## ⚙️ Instalación y Ejecución Local
-
-Para correr este proyecto en tu computadora, seguí estos pasos:
-
-1. Clonar el repositorio:
-   ```bash
-   git clone [URL_DE_TU_REPOSITORIO]
