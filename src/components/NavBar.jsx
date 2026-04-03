@@ -12,6 +12,8 @@ const NavBar = () => {
           {/* NavLink detecta si la ruta coincide y puede aplicar estilos de "activo" */}
           <NavLink className="nav-link" to="/category/celulares">Celulares</NavLink>
           <NavLink className="nav-link" to="/category/notebooks">Notebooks</NavLink>
+          <NavLink className="nav-link" to="/category/tablets">Tablets</NavLink>
+          <NavLink className="nav-link" to="/category/accesorios">Accesorios</NavLink>
         </div>
         <CartWidget />
       </div>

@@ -1,21 +1,16 @@
-# 🛒 Black Store - E-commerce React
+# Black Store - Entrega Final React JS
 
-Este proyecto es una aplicación de comercio electrónico (Single Page Application) desarrollada como proyecto final para el curso de React en Coderhouse. Permite a los usuarios navegar por un catálogo de productos, filtrar por categorías, ver detalles específicos de cada ítem, gestionar un carrito de compras y generar una orden de compra.
+## Descripción
+E-commerce desarrollado con React.js que conecta con una base de datos Firebase para la gestión de productos y órdenes de compra.
 
-## 🚀 Funcionalidades
+## Funcionalidades
+- Navegación SPA con React Router Dom.
+- Listado de productos filtrados por categorías (Celulares, Notebooks).
+- Detalle de producto con stock controlado.
+- Carrito de compras funcional con Context API.
+- Checkout con validación de datos y generación de ID de orden en Firestore.
 
-* **Navegación fluida:** Implementada con React Router DOM para navegar entre secciones sin recargar la página.
-* **Filtrado dinámico:** Uso de parámetros en la URL (React Router) para filtrar productos por categoría.
-* **Gestión de Carrito:** Implementación de Context API para manejar el estado global de las compras (agregar productos, eliminar, vaciar carrito, y calcular cantidad/precio total).
-* **Renderizado Condicional:** Uso de loaders y feedback visual durante las esperas asíncronas para mejorar la experiencia del usuario.
-* **Conexión a Base de Datos:** Integración con Firebase (Firestore) para alojar el catálogo de productos y registrar las órdenes de compra generadas en el Checkout.
-
-## 🛠️ Tecnologías y Herramientas
-
-* **Core:** React (inicializado con Vite)
-* **Estilos:** HTML, CSS y Bootstrap
-* **Rutas:** React Router DOM
-* **Backend as a Service:** Firebase / Firestore
-* **Control de Versiones:** Git y GitHub
-
-## ⚙️ Instalación y Ejecución Local
+## Instalación
+1. Clonar: `git clone https://github.com/AyluCortez/react-Js.git`
+2. Instalar: `npm install`
+3. Iniciar: `npm run dev`

@@ -2,24 +2,35 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import ItemListContainer from './components/ItemListContainer';
 import ItemDetailContainer from './components/ItemDetailContainer';
-import Error from './components/Error';
 import Cart from './components/Cart';
-
-// 1. Acá importamos el contexto
-import { CartProvider } from './context/CartContext'; 
+import Checkout from './components/Checkout.jsx';
+import { CartProvider } from './context/CartContext';
+import './App.css';
 
 function App() {
   return (
     <BrowserRouter>
-      {/* 2. Envolvemos toda la aplicación (NavBar y Routes) con el CartProvider */}
+      {/* El Provider permite que el carrito sea persistente en toda la navegación */}
       <CartProvider>
         <NavBar />
         <Routes>
-          <Route path="/" element={<ItemListContainer greeting="Bienvenido a Coder Store" />} />
+          {/* Ruta principal: Muestra todos los productos desde Firebase */}
+          <Route path="/" element={<ItemListContainer greeting="Bienvenido a Black Store" />} />
+          
+          {/* Rutas dinámicas para categorías (Celulares, Notebooks, etc.) */}
           <Route path="/category/:id" element={<ItemListContainer />} />
+          
+          {/* Ruta para el detalle de un producto específico */}
           <Route path="/item/:id" element={<ItemDetailContainer />} />
-          <Route path="*" element={<Error />} />
+          
+          {/* Vista del carrito de compras */}
           <Route path="/cart" element={<Cart />} />
+          
+          {/* RUTA CRÍTICA: Declaración del Checkout para procesar la orden en Firebase */}
+          <Route path="/checkout" element={<Checkout />} />
+          
+          {/* Manejo de rutas inexistentes */}
+          <Route path="*" element={<h2 className="text-center mt-5">404 - Página no encontrada</h2>} />
         </Routes>
       </CartProvider>
     </BrowserRouter>

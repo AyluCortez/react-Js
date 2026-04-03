@@ -1,46 +1,45 @@
+// 1. PRIMERO VAN LOS IMPORTS 
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom"; // Para leer la URL
-import { db } from "../services/firebase.jsx";
-import { collection, getDocs, query, where } from "firebase/firestore"; // Importaciones correctas de Firebase
+import { useParams } from "react-router-dom";
+import { db } from "../services/firebase";
+import { collection, getDocs, query, where, addDoc } from "firebase/firestore";
 import ItemList from "./ItemList";
 import Loader from "./Loader";
+import { products } from "../mock/asynData"; 
 
 const ItemListContainer = ({ greeting }) => {
-    const [products, setProducts] = useState([]);
+    const [productosData, setProductosData] = useState([]);
     const [loading, setLoading] = useState(true);
-    const { id } = useParams(); // 'id' será la categoría si el usuario hace clic en el NavBar
+    const { id } = useParams();
+
+    
+    const subirProd = () => {
+        const collASubir = collection(db, "productos");
+        products.map((prod) => addDoc(collASubir, prod));
+        alert("¡Carga masiva realizada!");
+    };
 
     useEffect(() => {
         setLoading(true);
+        const productosRef = collection(db, "productos");
+        const q = id ? query(productosRef, where("category", "==", id)) : productosRef;
 
-        // Armamos la consulta a la colección "productos" (asegurate que en Firebase se llame así y no "products")
-        const productsRef = id
-            ? query(collection(db, "productos"), where("category", "==", id)) // Filtra por categoría
-            : collection(db, "productos"); // Trae todos si no hay categoría
-
-        getDocs(productsRef)
+        getDocs(q)
             .then((res) => {
-                // Adaptamos la respuesta de Firebase a nuestro formato
-                const productsAdapted = res.docs.map((doc) => {
-                    return { id: doc.id, ...doc.data() };
-                });
-                setProducts(productsAdapted);
+                setProductosData(res.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
             })
-            .catch((error) => {
-                console.error("Error buscando productos:", error);
-            })
-            .finally(() => {
-                setLoading(false);
-            });
-    }, [id]); // El useEffect se vuelve a ejecutar si cambia el id de la URL
+            .catch((err) => console.log(err))
+            .finally(() => setLoading(false));
+    }, [id]);
 
-    if (loading) return <Loader />; // Feedback visual de carga
+    if (loading) return <Loader />;
 
     return (
         <div className="container mt-5">
-            <h1 className="text-center mb-4">{greeting || "Bienvenidos a la tienda"}</h1>
-            {/* Le pasamos los productos ya traídos de Firebase a tu componente visual */}
-            <ItemList products={products} />
+            <h1 className="text-center mb-4">{greeting}</h1>
+            <div className="text-center mb-4">
+            </div>
+            <ItemList products={productosData} />
         </div>
     );
 };
